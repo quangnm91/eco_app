@@ -22,6 +22,7 @@ class _CarouselSliderComponentState extends State<CarouselSliderComponent> {
           options: CarouselOptions(
             height: widget.height,
             viewportFraction: 1,
+            autoPlay: true,
             autoPlayAnimationDuration: const Duration(milliseconds: 1000),
             autoPlayCurve: Curves.fastOutSlowIn,
             onPageChanged: (index, reason) {
