@@ -1,3 +1,4 @@
+import 'package:eco_app/presentation/base/adjust_quantity_component.dart';
 import 'package:eco_app/presentation/base/carousel_slider_component.dart';
 import 'package:eco_app/presentation/base/favorite_icon.dart';
 import 'package:flutter/material.dart';
@@ -75,46 +76,12 @@ class ProductDetailsScreen extends StatelessWidget {
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta tempus turpis at sodales. Sed commodo in elit in dignissim. Nulla vel orci mauris. Vestibulum euismod vitae turpis sit amet facilisis. Vestibulum leo lacus, pharetra vel orci ut, interdum lacinia mauris. Morbi ut ullamcorper ex. Sed rhoncus faucibus aliquam. Nam nec dolor in augue semper consequat. Ut blandit, ligula a volutpat congue, diam ipsum ultricies neque, ac ultrices urna nisl ac orci.'),
                 const SizedBox(height: 16),
                 Row(
-                  children: [
-                    const Text('Quantity',
+                  children: const [
+                    Text('Quantity',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500)),
-                    const SizedBox(width: 16),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24),
-                        color: Colors.grey.shade200,
-                      ),
-                      child: Row(
-                        children: [
-                          Material(
-                            color: Colors.grey.shade200,
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(24),
-                              onTap: () {},
-                              child: Icon(Icons.remove),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          const Text(
-                            '10',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                          const SizedBox(width: 12),
-                          Material(
-                            color: Colors.grey.shade200,
-                            child: InkWell(
-                              onTap: () {},
-                              borderRadius: BorderRadius.circular(24),
-                              child: const Icon(Icons.add),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    SizedBox(width: 16),
+                    AdjustQuantityComponent(),
                   ],
                 ),
                 const SizedBox(height: 8),
