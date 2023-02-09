@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
+                      color: Colors.grey.shade200,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(4.0))),
                   child: const Padding(
