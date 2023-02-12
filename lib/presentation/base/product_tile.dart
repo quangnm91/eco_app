@@ -7,9 +7,11 @@ class ProductTile extends StatelessWidget {
     super.key,
     this.onRemoveProduct,
     this.showRemoveIcon,
+    this.showOnlyQuantity,
   });
   final void Function()? onRemoveProduct;
   final bool? showRemoveIcon;
+  final bool? showOnlyQuantity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +19,7 @@ class ProductTile extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16), color: Colors.white),
       padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
+      margin: const EdgeInsets.only(top: 16, left: 24, right: 24),
       child: Row(
         children: [
           Expanded(
@@ -62,14 +64,19 @@ class ProductTile extends StatelessWidget {
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text('\$320.00',
+                    children: [
+                      const Text('\$320.00',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500)),
-                      AdjustQuantityComponent(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                      )
+                      (showOnlyQuantity ?? false)
+                          ? CircleAvatar(
+                              backgroundColor: Colors.grey.shade200,
+                              child: Text('1'),
+                            )
+                          : AdjustQuantityComponent(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 4, horizontal: 12),
+                            )
                     ],
                   ),
                 ],

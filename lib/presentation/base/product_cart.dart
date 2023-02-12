@@ -39,18 +39,16 @@ class ProductCard extends StatelessWidget {
                 const Text('|', style: TextStyle(fontSize: 14)),
                 const SizedBox(width: 8),
                 Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(4.0))),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    child: Text(
-                      "1,620 sold",
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
-                      textAlign: TextAlign.center,
-                    ),
+                          const BorderRadius.all(Radius.circular(6.0))),
+                  child: Text(
+                    "1,620 sold",
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

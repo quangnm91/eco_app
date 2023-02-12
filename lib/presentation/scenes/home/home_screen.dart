@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(12)),
                   hintText: 'Search',
                   prefixIcon: const Icon(Icons.search_outlined),
                   suffixIcon: const Icon(Icons.filter_list_outlined),
