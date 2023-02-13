@@ -25,13 +25,11 @@ class PaymentMethodScreen extends StatelessWidget {
               ),
               _paymentTile(
                 title: 'Google Pay',
-                icon:
-                    Image(image: AssetImage('assets/images/ic_google_pay.png')),
+                icon: Image(image: AssetImage('assets/images/ic_google.png')),
               ),
               _paymentTile(
                 title: 'Apple Pay',
-                icon:
-                    Image(image: AssetImage('assets/images/ic_apple_pay.png')),
+                icon: Image(image: AssetImage('assets/images/ic_apple.png')),
               ),
               _paymentTile(
                 title: '.... .... ... ... 4679',
