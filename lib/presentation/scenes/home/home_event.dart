@@ -11,7 +11,6 @@ class InitialEvent extends HomeEvent {
   const InitialEvent();
 }
 
-class ChangeSliderPage extends HomeEvent {
-  final int newPageIndex;
-  const ChangeSliderPage({required this.newPageIndex});
+class LoadingEvent extends HomeEvent {
+  const LoadingEvent();
 }

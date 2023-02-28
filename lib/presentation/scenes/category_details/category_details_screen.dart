@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../base/product_cart.dart';
+import '../../widgets/product_card.dart';
 
 class CategoryDetails extends StatelessWidget {
   const CategoryDetails({super.key});
@@ -27,7 +27,8 @@ class CategoryDetails extends StatelessWidget {
         shrinkWrap: true, // You won't see infinite size error
         itemCount: 5,
         itemBuilder: (BuildContext ctx, index) {
-          return const ProductCard();
+          // TODO: change this
+          //  return const ProductCard();
         },
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../base/pin_code_text_field_component.dart';
+import '../../../widgets/pin_code_text_field_component.dart';
 
 class EnterPinScreen extends StatelessWidget {
   const EnterPinScreen({super.key});

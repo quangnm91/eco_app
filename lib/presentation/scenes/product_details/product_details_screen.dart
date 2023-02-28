@@ -1,7 +1,8 @@
-import 'package:eco_app/presentation/base/adjust_quantity_component.dart';
-import 'package:eco_app/presentation/base/carousel_slider_component.dart';
-import 'package:eco_app/presentation/base/favorite_icon.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/adjust_quantity_component.dart';
+import '../../widgets/carousel_slider_component.dart';
+import '../../widgets/favorite_icon.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key});
