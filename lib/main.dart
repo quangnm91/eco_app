@@ -1,7 +1,15 @@
+import 'package:eco_app/config/config_key.dart';
+import 'package:eco_app/core/utils/secure_storage_helper.dart';
+import 'package:eco_app/injector.dart';
 import 'package:eco_app/presentation/scenes/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
+  await dotenv.load(fileName: ".env");
+  await setupConfig();
+  await initInjector();
   runApp(const MyApp());
 }
 
@@ -19,4 +27,10 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
     );
   }
+}
+
+Future<void> setupConfig() async {
+  await SecureStorageHelper.setString(ConfigKey.apiUrl, dotenv.get('API_URL'));
+  await SecureStorageHelper.setString(
+      ConfigKey.appName, dotenv.get('APP_NAME', fallback: 'ECO APP'));
 }

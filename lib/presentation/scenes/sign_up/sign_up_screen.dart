@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../base/checkbox_component.dart';
+import '../../widgets/checkbox_component.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

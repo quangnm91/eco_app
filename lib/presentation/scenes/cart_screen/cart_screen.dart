@@ -1,7 +1,7 @@
-import 'package:eco_app/presentation/base/product_tile.dart';
 import 'package:flutter/material.dart';
 
-import '../../base/bottom_navigation_bar_component.dart';
+import '../../widgets/bottom_navigation_bar_component.dart';
+import '../../widgets/product_tile.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -46,7 +46,8 @@ class CartScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 16),
                               const Divider(indent: 16, endIndent: 16),
-                              const ProductTile(showRemoveIcon: false),
+                              //TODO: change this
+                              // const ProductTile(showRemoveIcon: false),
                               const SizedBox(height: 16),
                               const Divider(indent: 16, endIndent: 16),
                               const SizedBox(height: 16),

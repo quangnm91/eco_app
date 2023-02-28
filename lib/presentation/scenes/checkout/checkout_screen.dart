@@ -1,6 +1,7 @@
-import 'package:eco_app/presentation/base/product_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/product_tile.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
