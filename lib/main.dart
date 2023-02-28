@@ -4,6 +4,7 @@ import 'package:eco_app/injector.dart';
 import 'package:eco_app/presentation/scenes/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       home: const HomeScreen(),
+      routes: routes,
     );
   }
 }

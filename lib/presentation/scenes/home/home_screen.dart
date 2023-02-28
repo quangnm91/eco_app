@@ -1,3 +1,4 @@
+import 'package:eco_app/domain/model/large_category_model.dart';
 import 'package:eco_app/domain/usecases/category_usecases.dart';
 import 'package:eco_app/domain/usecases/product_usecases.dart';
 import 'package:eco_app/presentation/scenes/home/home_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../injector.dart';
+import '../../../routes.dart';
 import '../../widgets/bottom_navigation_bar_component.dart';
 import '../../widgets/carousel_slider_component.dart';
 import '../../widgets/category_card.dart';
@@ -25,8 +27,6 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       bloc: bloc,
       builder: (_, state) {
-        print("current state --> ${state.status}");
-        print("product length --> ${state.products.length}");
         if (state.status == HomeStatus.initial) {
           bloc.add(const LoadingEvent());
         }
@@ -107,8 +107,14 @@ class HomeScreen extends StatelessWidget {
                   shrinkWrap: true, // You won't see infi
                   itemCount: 8,
                   itemBuilder: (BuildContext ctx, index) {
+                    LargeCategoryModel category =
+                        state.largeCategories.elementAt(index);
                     return CategoryCard(
-                        category: state.largeCategories.elementAt(index));
+                      category: category,
+                      onTap: () => Navigator.pushNamed(
+                          context, Routes.categoryDetails,
+                          arguments: category),
+                    );
                   },
                 ),
                 const SizedBox(height: 24),
