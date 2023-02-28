@@ -17,15 +17,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> onInitialEvent(
       InitialEvent event, Emitter<HomeState> emit) async {
-    print("product usecase != null ? ${productUsecases != null}");
-
     emit(state.copyWith(status: HomeStatus.loading));
   }
 
   FutureOr<void> onLoadingEvent(
       LoadingEvent event, Emitter<HomeState> emit) async {
-    print("product usecase != null ? ${productUsecases != null}");
-
     final categories = await categoryUsecases.getLargeCategories();
     categories.fold(
         (failure) => emit(
