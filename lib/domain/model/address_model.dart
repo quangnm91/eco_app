@@ -2,8 +2,8 @@
 import 'dart:convert';
 
 class Address {
-  String id;
-  String userId;
+  int id;
+  int userId;
   String name;
   String address;
   String phoneNumber;
@@ -30,12 +30,12 @@ class Address {
 
   factory Address.fromMap(Map<String, dynamic> map) {
     return Address(
-      id: map['id'] as String,
-      userId: map['userId'] as String,
+      id: map['id'] as int,
+      userId: map['user_id'] as int,
       name: map['name'] as String,
       address: map['address'] as String,
-      phoneNumber: map['phoneNumber'] as String,
-      provinceId: map['provinceId'] as String,
+      phoneNumber: map['phone_number'] as String,
+      provinceId: map['province_id'] as String,
     );
   }
 

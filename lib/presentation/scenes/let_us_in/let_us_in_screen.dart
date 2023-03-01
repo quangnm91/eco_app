@@ -1,27 +1,24 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../../routes.dart';
+
 class LetUsInScreen extends StatelessWidget {
   const LetUsInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
-      ),
       body: ListView(
-          padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
           children: [
-            Container(
-              child: Image(
-                image: AssetImage('assets/images/let_in_bg.png'),
-                fit: BoxFit.scaleDown,
-                color: Colors.grey.shade50,
-                colorBlendMode: BlendMode.multiply,
-              ),
+            Image(
+              image: const AssetImage('assets/images/let_in_bg.png'),
+              fit: BoxFit.scaleDown,
+              color: Colors.grey.shade50,
+              colorBlendMode: BlendMode.multiply,
             ),
-            Center(
+            const Center(
               child: Text(
                 'Let\'s in',
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
@@ -29,7 +26,7 @@ class LetUsInScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 14),
+              padding: const EdgeInsets.symmetric(vertical: 14),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.shade300),
                   borderRadius: BorderRadius.circular(16)),
@@ -78,7 +75,7 @@ class LetUsInScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   CircleAvatar(
                     radius: 10,
                     child:
@@ -94,7 +91,7 @@ class LetUsInScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Row(
-              children: [
+              children: const [
                 Expanded(child: Divider(endIndent: 8)),
                 Text('or'),
                 Expanded(child: Divider(indent: 8))
@@ -109,7 +106,9 @@ class LetUsInScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(28.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.signIn);
+              },
               child: const Text(
                 'Sign in with password',
                 style: TextStyle(color: Colors.white),
@@ -123,9 +122,11 @@ class LetUsInScreen extends StatelessWidget {
                   style: const TextStyle(color: Colors.black),
                   children: [
                     TextSpan(
-                        text: 'Sign in',
+                        text: 'Sign up',
                         style: const TextStyle(fontWeight: FontWeight.bold),
-                        recognizer: TapGestureRecognizer()..onTap = () => {})
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () =>
+                              Navigator.of(context).pushNamed(Routes.signUp))
                   ]),
             ),
           ]),

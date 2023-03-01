@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 abstract class SecureStorage {
   Future<String?> getSavedToken();
-  Future<Token> updateToken({required Token token});
+  Future<TokenModel> updateToken({required TokenModel token});
   Future<void> removeToken();
 }
 
@@ -20,7 +20,7 @@ class SecureStorageImpl extends SecureStorage {
   }
 
   @override
-  Future<Token> updateToken({required Token token}) async {
+  Future<TokenModel> updateToken({required TokenModel token}) async {
     await storage.write(key: TOKEN_KEY, value: token.toJson());
     return token;
   }

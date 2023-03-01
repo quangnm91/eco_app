@@ -7,13 +7,13 @@ import 'local_storage.dart';
 import 'secure_storage.dart';
 
 abstract class AuthenticatedCache {
-  Future<Token?> getToken();
-  Future<Token> putToken(Token token);
+  Future<TokenModel?> getToken();
+  Future<TokenModel> putToken(TokenModel token);
   Future<void> removeToken();
 }
 
 class AuthenticatedCacheImpl extends AuthenticatedCache {
-  Token? token;
+  TokenModel? token;
   SecureStorage secureStorage;
   LocalStorage localStorage;
   AuthenticatedCacheImpl({
@@ -23,7 +23,7 @@ class AuthenticatedCacheImpl extends AuthenticatedCache {
   });
 
   @override
-  Future<Token> getToken() async {
+  Future<TokenModel> getToken() async {
     if (token != null) return token!;
 
     final String? cachedToken = await secureStorage.getSavedToken();
@@ -31,11 +31,11 @@ class AuthenticatedCacheImpl extends AuthenticatedCache {
       throw LocalDataException(errorMessage: 'ERROR get empty token');
     }
 
-    return Token.fromJson(cachedToken);
+    return TokenModel.fromJson(cachedToken);
   }
 
   @override
-  Future<Token> putToken(Token token) async {
+  Future<TokenModel> putToken(TokenModel token) async {
     this.token = token;
     await secureStorage.updateToken(token: token);
 
