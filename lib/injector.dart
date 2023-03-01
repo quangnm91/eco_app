@@ -1,5 +1,7 @@
+import 'package:eco_app/domain/repository/cart_repository.dart';
 import 'package:eco_app/domain/repository/category_repository.dart';
 import 'package:eco_app/domain/repository/product_repository.dart';
+import 'package:eco_app/domain/usecases/cart_usecases.dart';
 import 'package:eco_app/domain/usecases/category_usecases.dart';
 import 'package:eco_app/domain/usecases/product_usecases.dart';
 import 'package:get_it/get_it.dart';
@@ -19,4 +21,7 @@ initInjector() {
       () => CategoryRepositoryImpl());
   injector.registerLazySingleton<CategoryUsecases>(
       () => CategoryUsecasesImpl(repository: injector()));
+  injector.registerLazySingleton<CartRepository>(() => CartRepositoryImpl());
+  injector.registerLazySingleton<CartUsecases>(
+      () => CartUsecasesImpl(repository: injector()));
 }

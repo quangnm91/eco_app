@@ -24,8 +24,6 @@ class CategoryRepositoryImpl extends CategoryRepository with BaseRepository {
         body: null,
         queryParameters: null);
     var json = await RemoteConnection().execute(request);
-    print("large category ---> ");
-    print(json);
     return LargeCategoriesResponse.fromMap(json);
   }
 

@@ -26,6 +26,7 @@ class CategoryDetailsScreen extends StatelessWidget {
             builder: (BuildContext ctx) {
               return AlertDialog(
                 title: const Text('ERROR'),
+                content: Text(state.message),
                 actions: [
                   TextButton(
                     child: const Text('Ok'),

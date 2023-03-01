@@ -148,8 +148,11 @@ class HomeScreen extends StatelessWidget {
                   shrinkWrap: true, // You won't see infinite size error
                   itemCount: state.products.length,
                   itemBuilder: (BuildContext ctx, index) {
+                    final product = state.products.elementAt(index);
                     return ProductCard(
-                      product: state.products[index],
+                      product: product,
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(Routes.productDetails, arguments: product),
                     );
                   },
                 ),
