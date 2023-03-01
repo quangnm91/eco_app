@@ -4,17 +4,17 @@ import 'dart:convert';
 import 'address_model.dart';
 import 'profile_model.dart';
 
-class User {
-  String id;
+class UserModel {
+  int id;
   String email;
   int role;
-  List<Address> addresses;
+  List<Address>? addresses;
   Profile profile;
-  User({
+  UserModel({
     required this.id,
     required this.email,
     required this.role,
-    required this.addresses,
+    this.addresses,
     required this.profile,
   });
 
@@ -23,27 +23,29 @@ class User {
       'id': id,
       'email': email,
       'role': role,
-      'addresses': addresses.map((x) => x.toMap()).toList(),
+      'addresses': addresses?.map((x) => x.toMap()).toList(),
       'profile': profile.toMap(),
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      id: map['id'] as String,
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      id: map['id'] as int,
       email: map['email'] as String,
       role: map['role'] as int,
-      addresses: List<Address>.from(
-        (map['addresses'] as List<int>).map<Address>(
-          (x) => Address.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      addresses: map['addresses'] != null
+          ? List<Address>.from(
+              (map['addresses'] as List<dynamic>).map<Address?>(
+                (x) => Address.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
       profile: Profile.fromMap(map['profile'] as Map<String, dynamic>),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

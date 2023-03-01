@@ -3,7 +3,7 @@ import 'package:eco_app/domain/model/token_model.dart';
 
 abstract class BaseRepository {
   Future<Map<String, String>> defaultHeader(
-      {Token? token,
+      {TokenModel? token,
       String contentType = 'application/json',
       String acceptType = 'application/json'}) async {
     var header = {
@@ -22,7 +22,6 @@ abstract class BaseRepository {
     if (authCache == null) return defaultHeader();
     final token = await authCache.getToken();
     var header = defaultHeader(token: token);
-
     return header;
   }
 }

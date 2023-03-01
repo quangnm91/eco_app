@@ -1,6 +1,8 @@
+import 'package:eco_app/domain/repository/auth_respository.dart';
 import 'package:eco_app/domain/repository/cart_repository.dart';
 import 'package:eco_app/domain/repository/category_repository.dart';
 import 'package:eco_app/domain/repository/product_repository.dart';
+import 'package:eco_app/domain/usecases/auth_usecase.dart';
 import 'package:eco_app/domain/usecases/cart_usecases.dart';
 import 'package:eco_app/domain/usecases/category_usecases.dart';
 import 'package:eco_app/domain/usecases/product_usecases.dart';
@@ -24,4 +26,7 @@ initInjector() {
   injector.registerLazySingleton<CartRepository>(() => CartRepositoryImpl());
   injector.registerLazySingleton<CartUsecases>(
       () => CartUsecasesImpl(repository: injector()));
+  injector.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+  injector.registerLazySingleton<AuthUsecases>(
+      () => AuthUsecasesImpl(repository: injector()));
 }

@@ -3,11 +3,11 @@ import 'dart:convert';
 
 import 'user_model.dart';
 
-class Token {
+class TokenModel {
   String tokenType;
   String accessToken;
-  User user;
-  Token({
+  UserModel user;
+  TokenModel({
     required this.tokenType,
     required this.accessToken,
     required this.user,
@@ -21,16 +21,16 @@ class Token {
     };
   }
 
-  factory Token.fromMap(Map<String, dynamic> map) {
-    return Token(
+  factory TokenModel.fromMap(Map<String, dynamic> map) {
+    return TokenModel(
       tokenType: map['token_type'] as String,
       accessToken: map['access_token'] as String,
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
+      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Token.fromJson(String source) =>
-      Token.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory TokenModel.fromJson(String source) =>
+      TokenModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:eco_app/domain/model/image_model.dart';
 
 class Profile {
-  String id;
-  String userId;
+  int id;
+  int userId;
   String? fullName;
   String? description;
   ImageModel? image;
@@ -29,8 +29,8 @@ class Profile {
 
   factory Profile.fromMap(Map<String, dynamic> map) {
     return Profile(
-      id: map['id'] as String,
-      userId: map['userId'] as String,
+      id: map['id'] as int,
+      userId: map['userId'] as int,
       fullName: map['fullName'] != null ? map['fullName'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
