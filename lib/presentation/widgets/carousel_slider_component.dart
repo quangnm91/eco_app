@@ -1,10 +1,13 @@
+import 'package:eco_app/domain/model/image_model.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
 class CarouselSliderComponent extends StatefulWidget {
-  const CarouselSliderComponent({required this.height, super.key});
+  const CarouselSliderComponent({required this.height, super.key, this.images});
+
   final double height;
+  final List<ImageModel>? images;
 
   @override
   State<CarouselSliderComponent> createState() =>
@@ -31,19 +34,20 @@ class _CarouselSliderComponentState extends State<CarouselSliderComponent> {
               });
             },
           ),
-          itemCount: 5,
+          itemCount: widget.images?.length ?? 1,
           itemBuilder: (context, index, realIndex) {
+            if (widget.images == null) {
+              return Image.asset('assets/gifs/ic_loading.gif');
+            }
+
             return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.grey.shade200,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                '$index',
-                style: const TextStyle(fontSize: 14, color: Colors.white),
-              ),
-            );
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  // color: Colors.grey.shade200,
+                ),
+                child: Image(
+                  image: NetworkImage(widget.images!.elementAt(index).url),
+                ));
           },
         ),
         Positioned(

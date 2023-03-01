@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+typedef onChangedCallback = void Function(int);
+
 class AdjustQuantityComponent extends StatefulWidget {
-  const AdjustQuantityComponent({super.key, this.padding});
+  const AdjustQuantityComponent({super.key, this.padding, this.onChanged});
 
   final EdgeInsetsGeometry? padding;
+  final onChangedCallback? onChanged;
   @override
   State<AdjustQuantityComponent> createState() =>
       _AdjustQuantityComponentState();
@@ -29,7 +32,10 @@ class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
               onTap: () {
                 if (_quantity > 0) {
                   setState(() {
-                    _quantity--;
+                    --_quantity;
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(_quantity);
+                    }
                   });
                 }
               },
@@ -47,7 +53,10 @@ class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  _quantity++;
+                  ++_quantity;
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(_quantity);
+                  }
                 });
               },
               borderRadius: BorderRadius.circular(24),
