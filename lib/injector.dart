@@ -1,3 +1,5 @@
+import 'package:eco_app/data/local/authenticated_cache.dart';
+import 'package:eco_app/data/local/secure_storage.dart';
 import 'package:eco_app/domain/repository/auth_respository.dart';
 import 'package:eco_app/domain/repository/cart_repository.dart';
 import 'package:eco_app/domain/repository/category_repository.dart';
@@ -29,4 +31,7 @@ initInjector() {
   injector.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
   injector.registerLazySingleton<AuthUsecases>(
       () => AuthUsecasesImpl(repository: injector()));
+  injector.registerLazySingleton<SecureStorage>(() => SecureStorageImpl());
+  injector.registerLazySingleton<AuthenticatedCache>(
+      () => AuthenticatedCacheImpl(secureStorage: injector()));
 }
