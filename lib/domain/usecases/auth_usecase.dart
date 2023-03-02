@@ -8,6 +8,7 @@ import '../../core/utils/log_helper.dart';
 
 abstract class AuthUsecases {
   Future<Either<Failure, TokenResponse>> signUp(String email, String password);
+  Future<Either<Failure, TokenResponse>> signIn(String email, String password);
 }
 
 class AuthUsecasesImpl extends AuthUsecases {
@@ -20,6 +21,20 @@ class AuthUsecasesImpl extends AuthUsecases {
       String email, String password) async {
     try {
       return Right(await repository.signUp(email, password));
+    } on RemoteException catch (e) {
+      LogHelper().logger.e(e);
+      return Left(RemoteFailure(message: e.toString()));
+    } catch (e) {
+      LogHelper().logger.e(e);
+      return Left(UnknownFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TokenResponse>> signIn(
+      String email, String password) async {
+    try {
+      return Right(await repository.signIn(email, password));
     } on RemoteException catch (e) {
       LogHelper().logger.e(e);
       return Left(RemoteFailure(message: e.toString()));

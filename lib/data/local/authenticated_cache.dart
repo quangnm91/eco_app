@@ -8,18 +8,18 @@ import 'secure_storage.dart';
 
 abstract class AuthenticatedCache {
   Future<TokenModel?> getToken();
-  Future<TokenModel> putToken(TokenModel token);
+  Future<TokenModel> putToken({required TokenModel token});
   Future<void> removeToken();
 }
 
 class AuthenticatedCacheImpl extends AuthenticatedCache {
   TokenModel? token;
   SecureStorage secureStorage;
-  LocalStorage localStorage;
+  // LocalStorage localStorage;
   AuthenticatedCacheImpl({
-    required this.token,
+    this.token,
     required this.secureStorage,
-    required this.localStorage,
+    // required this.localStorage,
   });
 
   @override
@@ -35,7 +35,7 @@ class AuthenticatedCacheImpl extends AuthenticatedCache {
   }
 
   @override
-  Future<TokenModel> putToken(TokenModel token) async {
+  Future<TokenModel> putToken({required TokenModel token}) async {
     this.token = token;
     await secureStorage.updateToken(token: token);
 
