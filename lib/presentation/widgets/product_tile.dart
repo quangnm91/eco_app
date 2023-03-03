@@ -1,17 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
+import '../../domain/model/cart_item_model.dart';
+import '../../domain/model/product_model.dart';
 import 'adjust_quantity_component.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
     super.key,
+    required this.cartItem,
     this.onRemoveProduct,
     this.showRemoveIcon,
-    this.showOnlyQuantity,
+    this.showOnlyQuantity = false,
+    this.onChangeQuantity,
   });
+
+  final CartItemModel cartItem;
   final void Function()? onRemoveProduct;
+  final void Function(int)? onChangeQuantity;
   final bool? showRemoveIcon;
-  final bool? showOnlyQuantity;
+  final bool showOnlyQuantity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,8 +37,8 @@ class ProductTile extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0), //add border radius
-                child: const Image(
-                  image: AssetImage('assets/images/ic_minion.jpeg'),
+                child: Image(
+                  image: NetworkImage(cartItem.product.images!.first.url),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -45,37 +54,50 @@ class ProductTile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Suga Leather Shoes',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      Visibility(
-                        visible: showRemoveIcon ?? true,
-                        child: InkWell(
-                            onTap: onRemoveProduct,
-                            child: const Icon(Icons.delete_outline_outlined)),
+                      Expanded(
+                        flex: 6,
+                        child: Text(cartItem.product.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500)),
+                      ),
+                      Expanded(
+                        child: Visibility(
+                          visible: showRemoveIcon ?? true,
+                          child: InkWell(
+                              onTap: onRemoveProduct,
+                              child: const Icon(Icons.delete_outline_outlined)),
+                        ),
                       )
                     ],
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'Unit type: Kg',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                  Text(
+                    'Unit Type: ${cartItem.product.unitType}',
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w400),
                   ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('\$320.00',
-                          style: TextStyle(
+                      Text('${cartItem.quantity * cartItem.product.price} ₫',
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500)),
-                      (showOnlyQuantity ?? false)
+                      (showOnlyQuantity)
                           ? CircleAvatar(
                               backgroundColor: Colors.grey.shade200,
-                              child: Text('1'),
+                              child: Text(
+                                cartItem.quantity.toString(),
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
+                              ),
                             )
                           : AdjustQuantityComponent(
-                              padding: EdgeInsets.symmetric(
+                              quantity: cartItem.quantity,
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 12),
+                              onChanged: onChangeQuantity,
                             )
                     ],
                   ),

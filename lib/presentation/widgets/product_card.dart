@@ -10,6 +10,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //  NumberFormat myFormat = NumberFormat.decimalPattern('en_us');
     return InkWell(
       onTap: onTap,
       child: Stack(

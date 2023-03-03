@@ -10,8 +10,7 @@ abstract class SecureStorage {
 const TOKEN_KEY = "TOKEN";
 
 class SecureStorageImpl extends SecureStorage {
-  final storage = const FlutterSecureStorage(
-      aOptions: AndroidOptions(encryptedSharedPreferences: true));
+  final storage = const FlutterSecureStorage();
 
   @override
   Future<String?> getSavedToken() async {

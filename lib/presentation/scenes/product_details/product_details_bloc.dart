@@ -5,18 +5,22 @@ import 'package:eco_app/domain/usecases/cart_usecases.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../data/local/authenticated_cache.dart';
+
 part 'product_details_event.dart';
 part 'product_details_state.dart';
 
 class ProductDetailsBloc
     extends Bloc<ProductDetailsEvent, ProductDetailsState> {
-  ProductDetailsBloc({required this.cartUsecases})
+  ProductDetailsBloc(
+      {required this.cartUsecases, required this.authenticatedCache})
       : super(const ProductDetailsState.initial()) {
     on<InitialEvent>(onInitialEvent);
     on<LoadingEvent>(onLoadingEvent);
     on<AddToCartEvent>(onAddToCartEvent);
   }
   final CartUsecases cartUsecases;
+  final AuthenticatedCache authenticatedCache;
   final rxQuantity = ReplaySubject<int>();
 
   FutureOr<void> onInitialEvent(

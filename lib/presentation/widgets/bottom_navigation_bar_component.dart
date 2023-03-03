@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../routes.dart';
+
 class BottomNavigationBarComponent extends StatefulWidget {
   const BottomNavigationBarComponent({super.key});
 
@@ -10,6 +12,7 @@ class BottomNavigationBarComponent extends StatefulWidget {
 
 class _BottomNavigationBarComponentState
     extends State<BottomNavigationBarComponent> {
+  final bottomNavigationIndex = ['home', 'cart', 'orders', 'wallet', 'profile'];
   int _index = 0;
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,11 @@ class _BottomNavigationBarComponentState
         setState(() {
           _index = index;
         });
+        switch (bottomNavigationIndex[index]) {
+          case 'cart':
+            Navigator.of(context).pushNamed(Routes.cart);
+            break;
+        }
       },
       unselectedItemColor: Colors.grey.shade700,
       showUnselectedLabels: true,

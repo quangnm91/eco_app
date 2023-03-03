@@ -71,14 +71,15 @@ class CheckoutScreen extends StatelessWidget {
               child: Text('Order list',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)),
             ),
-            ProductTile(
-              showRemoveIcon: false,
-              showOnlyQuantity: true,
-            ),
-            ProductTile(
-              showRemoveIcon: false,
-              showOnlyQuantity: true,
-            ),
+            // TODO: change this
+            // ProductTile(
+            //   showRemoveIcon: false,
+            //   showOnlyQuantity: true,
+            // ),
+            // ProductTile(
+            //   showRemoveIcon: false,
+            //   showOnlyQuantity: true,
+            // ),
             SizedBox(height: 16),
             const Divider(indent: 24, endIndent: 24),
             Padding(

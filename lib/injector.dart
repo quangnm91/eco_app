@@ -17,6 +17,8 @@ GetIt getIt = GetIt.instance;
 var injector = GetIt.asNewInstance();
 
 initInjector() {
+  injector.registerLazySingleton<AuthenticatedCache>(
+      () => AuthenticatedCacheImpl(secureStorage: injector()));
   injector
       .registerLazySingleton<ProductRepository>(() => ProductRepositoryImpl());
   injector.registerLazySingleton<ProductUsecases>(
@@ -25,13 +27,12 @@ initInjector() {
       () => CategoryRepositoryImpl());
   injector.registerLazySingleton<CategoryUsecases>(
       () => CategoryUsecasesImpl(repository: injector()));
-  injector.registerLazySingleton<CartRepository>(() => CartRepositoryImpl());
+  injector.registerLazySingleton<CartRepository>(
+      () => CartRepositoryImpl(authenticatedCache: injector()));
   injector.registerLazySingleton<CartUsecases>(
       () => CartUsecasesImpl(repository: injector()));
   injector.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
   injector.registerLazySingleton<AuthUsecases>(
       () => AuthUsecasesImpl(repository: injector()));
   injector.registerLazySingleton<SecureStorage>(() => SecureStorageImpl());
-  injector.registerLazySingleton<AuthenticatedCache>(
-      () => AuthenticatedCacheImpl(secureStorage: injector()));
 }

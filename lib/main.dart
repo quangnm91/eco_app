@@ -1,6 +1,7 @@
 import 'package:eco_app/config/config_key.dart';
 import 'package:eco_app/core/utils/secure_storage_helper.dart';
 import 'package:eco_app/injector.dart';
+import 'package:eco_app/presentation/scenes/home/home_screen.dart';
 import 'package:eco_app/presentation/scenes/let_us_in/let_us_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const LetUsInScreen(),
+      home: const HomeScreen(),
       routes: routes,
     );
   }
