@@ -52,7 +52,7 @@ class _CarouselSliderComponentState extends State<CarouselSliderComponent> {
         ),
         Positioned(
             child: DotsIndicator(
-          dotsCount: 5,
+          dotsCount: widget.images?.length ?? 1,
           position: _index.toDouble(),
           decorator: DotsDecorator(
             size: const Size.square(4.0),

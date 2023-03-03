@@ -23,7 +23,7 @@ class AuthUsecasesImpl extends AuthUsecases {
       return Right(await repository.signUp(email, password));
     } on RemoteException catch (e) {
       LogHelper().logger.e(e);
-      return Left(RemoteFailure(message: e.toString()));
+      return Left(RemoteFailure(message: e.errorMessage));
     } catch (e) {
       LogHelper().logger.e(e);
       return Left(UnknownFailure(message: e.toString()));
@@ -37,7 +37,7 @@ class AuthUsecasesImpl extends AuthUsecases {
       return Right(await repository.signIn(email, password));
     } on RemoteException catch (e) {
       LogHelper().logger.e(e);
-      return Left(RemoteFailure(message: e.toString()));
+      return Left(RemoteFailure(message: e.errorMessage));
     } catch (e) {
       LogHelper().logger.e(e);
       return Left(UnknownFailure(message: e.toString()));

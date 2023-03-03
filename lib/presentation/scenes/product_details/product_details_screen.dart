@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:eco_app/data/local/authenticated_cache.dart';
 import 'package:eco_app/domain/model/product_model.dart';
 import 'package:eco_app/domain/usecases/cart_usecases.dart';
 import 'package:eco_app/presentation/scenes/product_details/product_details_bloc.dart';
@@ -18,7 +19,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = ProductDetailsBloc(cartUsecases: injector<CartUsecases>());
+    final bloc = ProductDetailsBloc(cartUsecases: injector<CartUsecases>(), authenticatedCache: injector<AuthenticatedCache>());
     return BlocListener<ProductDetailsBloc, ProductDetailsState>(
       bloc: bloc,
       listener: (context, state) {

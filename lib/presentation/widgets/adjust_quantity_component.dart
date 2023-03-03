@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 typedef onChangedCallback = void Function(int);
 
 class AdjustQuantityComponent extends StatefulWidget {
-  const AdjustQuantityComponent({super.key, this.padding, this.onChanged});
+  AdjustQuantityComponent(
+      {super.key, this.padding, this.onChanged, this.quantity = 0});
 
   final EdgeInsetsGeometry? padding;
   final onChangedCallback? onChanged;
+  int quantity;
   @override
   State<AdjustQuantityComponent> createState() =>
       _AdjustQuantityComponentState();
 }
 
 class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
-  int _quantity = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,11 +31,11 @@ class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
             child: InkWell(
               borderRadius: BorderRadius.circular(24),
               onTap: () {
-                if (_quantity > 0) {
+                if (widget.quantity > 0) {
                   setState(() {
-                    --_quantity;
+                    --widget.quantity;
                     if (widget.onChanged != null) {
-                      widget.onChanged!(_quantity);
+                      widget.onChanged!(widget.quantity);
                     }
                   });
                 }
@@ -44,7 +45,7 @@ class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
           ),
           const SizedBox(width: 12),
           Text(
-            '$_quantity',
+            '${widget.quantity}',
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(width: 12),
@@ -53,9 +54,9 @@ class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  ++_quantity;
+                  ++widget.quantity;
                   if (widget.onChanged != null) {
-                    widget.onChanged!(_quantity);
+                    widget.onChanged!(widget.quantity);
                   }
                 });
               },

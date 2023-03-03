@@ -28,7 +28,7 @@ class CategoryUsecasesImpl extends CategoryUsecases {
       return Right(await repository.getLargeCategories());
     } on RemoteException catch (e) {
       LogHelper().logger.e(e);
-      return Left(RemoteFailure(message: e.toString()));
+      return Left(RemoteFailure(message: e.errorMessage));
     } catch (e) {
       LogHelper().logger.e(e);
       return Left(UnknownFailure(message: e.toString()));
@@ -42,7 +42,7 @@ class CategoryUsecasesImpl extends CategoryUsecases {
       return Right(await repository.getLargeCategoryById(id));
     } on RemoteException catch (e) {
       LogHelper().logger.e(e);
-      return Left(RemoteFailure(message: e.toString()));
+      return Left(RemoteFailure(message: e.errorMessage));
     } catch (e) {
       LogHelper().logger.e(e);
       return Left(UnknownFailure(message: e.toString()));

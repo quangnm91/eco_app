@@ -52,7 +52,10 @@ class SignInScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.arrow_back),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
         body: ListView(
           padding:

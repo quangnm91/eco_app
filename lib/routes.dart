@@ -1,5 +1,6 @@
 import 'package:eco_app/domain/model/large_category_model.dart';
 import 'package:eco_app/domain/model/product_model.dart';
+import 'package:eco_app/presentation/scenes/cart_screen/cart_screen.dart';
 import 'package:eco_app/presentation/scenes/category_details/category_details_screen.dart';
 import 'package:eco_app/presentation/scenes/home/home_screen.dart';
 import 'package:eco_app/presentation/scenes/product_details/product_details_screen.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const home = '/home';
   static const signIn = '/sign-in';
   static const signUp = '/sign-up';
+  static const cart = '/cart';
 }
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -26,4 +28,5 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   Routes.home: (BuildContext context) => const HomeScreen(),
   Routes.signUp: (BuildContext context) => const SignUpScreen(),
   Routes.signIn: (BuildContext context) => const SignInScreen(),
+  Routes.cart: (BuildContext context) => const CartScreen(),
 };
