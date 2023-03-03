@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../injector.dart';
+import '../../../routes.dart';
 import '../../widgets/bottom_navigation_bar_component.dart';
 import '../../widgets/product_tile.dart';
 import 'cart_bloc.dart';
@@ -227,7 +228,10 @@ class CartScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(28.0),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(Routes.checkout,
+                                arguments: state.cart);
+                          },
                           icon: const Icon(Icons.shopping_bag,
                               color: Colors.white),
                           label: const Text(

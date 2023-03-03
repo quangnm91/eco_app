@@ -3,10 +3,12 @@ import 'package:eco_app/data/local/secure_storage.dart';
 import 'package:eco_app/domain/repository/auth_respository.dart';
 import 'package:eco_app/domain/repository/cart_repository.dart';
 import 'package:eco_app/domain/repository/category_repository.dart';
+import 'package:eco_app/domain/repository/order_respository.dart';
 import 'package:eco_app/domain/repository/product_repository.dart';
 import 'package:eco_app/domain/usecases/auth_usecase.dart';
 import 'package:eco_app/domain/usecases/cart_usecases.dart';
 import 'package:eco_app/domain/usecases/category_usecases.dart';
+import 'package:eco_app/domain/usecases/order_usecases.dart';
 import 'package:eco_app/domain/usecases/product_usecases.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,6 +19,7 @@ GetIt getIt = GetIt.instance;
 var injector = GetIt.asNewInstance();
 
 initInjector() {
+  injector.registerLazySingleton<SecureStorage>(() => SecureStorageImpl());
   injector.registerLazySingleton<AuthenticatedCache>(
       () => AuthenticatedCacheImpl(secureStorage: injector()));
   injector
@@ -34,5 +37,8 @@ initInjector() {
   injector.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
   injector.registerLazySingleton<AuthUsecases>(
       () => AuthUsecasesImpl(repository: injector()));
-  injector.registerLazySingleton<SecureStorage>(() => SecureStorageImpl());
+  injector.registerLazySingleton<OrderRepository>(
+      () => OrderRepositoryImpl(authenticatedCache: injector()));
+  injector.registerLazySingleton<OrderUsecases>(
+      () => OrderUsecasesImpl(repository: injector()));
 }
