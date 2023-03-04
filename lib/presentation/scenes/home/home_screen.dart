@@ -70,6 +70,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
+                  onTap: () => Navigator.of(context).pushNamed(Routes.search),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: BorderSide.none,
