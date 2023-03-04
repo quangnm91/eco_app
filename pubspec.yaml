@@ -41,7 +41,6 @@ dependencies:
   dots_indicator: ^2.1.0
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
-  loading_overlay: ^0.3.0
   pin_code_text_field: ^1.8.0
   dio: ^5.0.0
   data_connection_checker: ^0.3.4

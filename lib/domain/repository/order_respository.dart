@@ -2,10 +2,12 @@
 import '../../core/utils/remote_connection.dart';
 import '../../core/utils/remote_input.dart';
 import '../../data/local/authenticated_cache.dart';
+import '../response/orders_response.dart';
 import 'base_repository.dart';
 
 abstract class OrderRepository {
   Future<bool> store(int userAddressId, int shoppingSessionId);
+  Future<OrdersResponse> get();
 }
 
 class OrderRepositoryImpl extends OrderRepository with BaseRepository {
@@ -29,5 +31,21 @@ class OrderRepositoryImpl extends OrderRepository with BaseRepository {
         queryParameters: null);
     var json = await RemoteConnection().execute(request);
     return true;
+  }
+
+  @override
+  Future<OrdersResponse> get() async {
+    var header = await buildHeader(authCache: authenticatedCache);
+    var request = RemoteInput(
+        endPoint: '/orders',
+        method: RemoteMethod.get,
+        header: header,
+        body: null,
+        queryParameters: null);
+    var json = await RemoteConnection().execute(request);
+    print("json --> $json");
+    var model = OrdersResponse.fromMap(json);
+    print("model --> ${model.toString()}");
+    return model;
   }
 }

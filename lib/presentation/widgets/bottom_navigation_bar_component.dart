@@ -25,6 +25,9 @@ class _BottomNavigationBarComponentState
           case 'cart':
             Navigator.of(context).pushNamed(Routes.cart);
             break;
+          case 'orders':
+            Navigator.of(context).pushNamed(Routes.order);
+            break;
         }
       },
       unselectedItemColor: Colors.grey.shade700,

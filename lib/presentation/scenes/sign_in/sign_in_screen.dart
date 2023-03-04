@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../injector.dart';
+import '../../../routes.dart';
 import '../../widgets/checkbox_component.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -36,18 +37,21 @@ class SignInScreen extends StatelessWidget {
         }
         if (state.status == SignInStatus.success) {
           showDialog(
-              context: context,
-              builder: (BuildContext ctx) {
-                return AlertDialog(
-                  title: const Text('SUCCESS'),
-                  content: const Text('Press Ok to continue!'),
-                  actions: [
-                    TextButton(
-                        child: const Text('Ok'),
-                        onPressed: () => Navigator.of(context).pop())
-                  ],
-                );
-              });
+            context: context,
+            builder: (BuildContext ctx) {
+              return AlertDialog(
+                title: const Text('SUCCESS'),
+                content: const Text('Press Ok to continue!'),
+                actions: [
+                  TextButton(
+                      child: const Text('Ok'),
+                      onPressed: () => Navigator.of(context).pop())
+                ],
+              );
+            },
+          );
+          Navigator.pushNamedAndRemoveUntil(
+              context, Routes.home, (Route<dynamic> route) => false);
         }
       },
       child: Scaffold(
