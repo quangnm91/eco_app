@@ -5,6 +5,7 @@ import 'package:eco_app/presentation/scenes/cart_screen/cart_screen.dart';
 import 'package:eco_app/presentation/scenes/category_details/category_details_screen.dart';
 import 'package:eco_app/presentation/scenes/checkout/checkout_screen.dart';
 import 'package:eco_app/presentation/scenes/home/home_screen.dart';
+import 'package:eco_app/presentation/scenes/order_screen/order_screen.dart';
 import 'package:eco_app/presentation/scenes/product_details/product_details_screen.dart';
 import 'package:eco_app/presentation/scenes/search/search_screen.dart';
 import 'package:eco_app/presentation/scenes/sign_in/sign_in_screen.dart';
@@ -22,6 +23,7 @@ class Routes {
   static const cart = '/cart';
   static const checkout = '/checkout';
   static const search = '/search';
+  static const order = '/order';
 }
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -37,4 +39,5 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   Routes.checkout: (BuildContext context) => CheckoutScreen(
       cart: ModalRoute.of(context)?.settings.arguments as CartModel),
   Routes.search: (BuildContext context) => const SearchScreen(),
+  Routes.order: (BuildContext context) => const OrderScreen(),
 };
