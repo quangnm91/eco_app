@@ -5,6 +5,8 @@ import 'package:eco_app/presentation/scenes/checkout/checkout_screen.dart';
 import 'package:eco_app/presentation/scenes/checkout/shipping_address/shipping_address_screen.dart';
 import 'package:eco_app/presentation/scenes/home/home_screen.dart';
 import 'package:eco_app/presentation/scenes/let_us_in/let_us_in_screen.dart';
+import 'package:eco_app/presentation/scenes/search/search_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'routes.dart';
