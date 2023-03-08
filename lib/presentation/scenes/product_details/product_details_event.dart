@@ -8,7 +8,8 @@ abstract class ProductDetailsEvent extends Equatable {
 }
 
 class InitialEvent extends ProductDetailsEvent {
-  const InitialEvent();
+  final int productId;
+  const InitialEvent({required this.productId});
 }
 
 class LoadingEvent extends ProductDetailsEvent {

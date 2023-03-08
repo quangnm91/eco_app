@@ -13,6 +13,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       : super(const HomeState.initial()) {
     on<InitialEvent>(onInitialEvent);
     on<LoadingEvent>(onLoadingEvent);
+    on<LoadMoreProductsEvent>(onLoadMoreProductsEvent);
   }
 
   FutureOr<void> onInitialEvent(
@@ -26,14 +27,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     categories.fold(
         (failure) => emit(
             state.copyWith(status: HomeStatus.error, message: failure.message)),
-        (response) => emit(state.copyWith(
-            status: HomeStatus.done, largeCategories: response.data)));
+        (response) => emit(state.copyWith(largeCategories: response.data)));
 
     final result = await productUsecases.getProducts();
     result.fold((failure) {
       emit(state.copyWith(status: HomeStatus.error, message: failure.message));
     }, (response) {
-      emit(state.copyWith(status: HomeStatus.done, products: response.data));
+      emit(state.copyWith(
+          status: HomeStatus.done,
+          products: response.data,
+          lastPage: response.meta.currentPage));
+    });
+  }
+
+  FutureOr<void> onLoadMoreProductsEvent(
+      LoadMoreProductsEvent event, Emitter<HomeState> emit) async {
+    // print("load more product events ??");
+    final result = await productUsecases
+        .getProducts(queryParameters: {'page': state.lastPage + 1});
+    result.fold((failure) {
+      emit(state.copyWith(status: HomeStatus.error, message: failure.message));
+    }, (response) {
+      emit(state.copyWith(
+          status: HomeStatus.done,
+          products: state.products..addAll(response.data),
+          lastPage: response.meta.currentPage));
     });
   }
 }

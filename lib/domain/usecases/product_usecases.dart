@@ -12,7 +12,7 @@ import '../response/products_response.dart';
 abstract class ProductUsecases {
   Future<Either<Failure, ProductsResponse>> getProducts(
       {Map<String, dynamic>? queryParameters});
-  Future<Either<Failure, ProductResponse>> getProductById(String id);
+  Future<Either<Failure, ProductResponse>> getProductById(int id);
 }
 
 class ProductUsecasesImpl extends ProductUsecases {
@@ -22,7 +22,7 @@ class ProductUsecasesImpl extends ProductUsecases {
   });
 
   @override
-  Future<Either<Failure, ProductResponse>> getProductById(String id) async {
+  Future<Either<Failure, ProductResponse>> getProductById(int id) async {
     try {
       return Right(await repository.getProductById(id));
     } on RemoteException catch (e) {

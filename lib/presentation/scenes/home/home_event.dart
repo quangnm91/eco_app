@@ -14,3 +14,7 @@ class InitialEvent extends HomeEvent {
 class LoadingEvent extends HomeEvent {
   const LoadingEvent();
 }
+
+class LoadMoreProductsEvent extends HomeEvent {
+  const LoadMoreProductsEvent();
+}

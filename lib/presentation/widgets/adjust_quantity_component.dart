@@ -4,11 +4,16 @@ typedef onChangedCallback = void Function(int);
 
 class AdjustQuantityComponent extends StatefulWidget {
   AdjustQuantityComponent(
-      {super.key, this.padding, this.onChanged, this.quantity = 0});
+      {super.key,
+      this.padding,
+      this.onChanged,
+      this.quantity = 0,
+      this.max = 1000});
 
   final EdgeInsetsGeometry? padding;
   final onChangedCallback? onChanged;
   int quantity;
+  int max;
   @override
   State<AdjustQuantityComponent> createState() =>
       _AdjustQuantityComponentState();
@@ -54,9 +59,11 @@ class _AdjustQuantityComponentState extends State<AdjustQuantityComponent> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  ++widget.quantity;
-                  if (widget.onChanged != null) {
-                    widget.onChanged!(widget.quantity);
+                  if (widget.quantity < widget.max) {
+                    ++widget.quantity;
+                    widget.onChanged != null
+                        ? widget.onChanged!(widget.quantity)
+                        : null;
                   }
                 });
               },
