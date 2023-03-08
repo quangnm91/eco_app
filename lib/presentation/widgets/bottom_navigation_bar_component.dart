@@ -28,6 +28,9 @@ class _BottomNavigationBarComponentState
           case 'orders':
             Navigator.of(context).pushNamed(Routes.order);
             break;
+          case 'profile':
+            Navigator.of(context).pushNamed(Routes.settings);
+            break;
         }
       },
       unselectedItemColor: Colors.grey.shade700,

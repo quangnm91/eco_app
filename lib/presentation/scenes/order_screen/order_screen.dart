@@ -40,7 +40,6 @@ class OrderScreen extends StatelessWidget {
           return const LoadingIndicator(
               indicatorType: Indicator.ballScale,
               colors: [Colors.blueAccent],
-              // strokeWidth: 2,
               backgroundColor: Colors.white,
               pathBackgroundColor: Colors.white);
         }

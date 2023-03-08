@@ -11,12 +11,14 @@ class HomeState extends Equatable {
   final String message;
   final List<ProductModel> products;
   final List<LargeCategoryModel> largeCategories;
+  final int lastPage;
 
   const HomeState._({
     this.status = HomeStatus.initial,
     this.message = '',
     this.products = const [],
     this.largeCategories = const [],
+    this.lastPage = 1,
   });
 
   const HomeState.initial() : this._();
@@ -26,14 +28,17 @@ class HomeState extends Equatable {
     String? message,
     List<ProductModel>? products,
     List<LargeCategoryModel>? largeCategories,
+    int? lastPage,
   }) =>
       HomeState._(
         status: status ?? this.status,
         message: message ?? this.message,
         products: products ?? this.products,
         largeCategories: largeCategories ?? this.largeCategories,
+        lastPage: lastPage ?? this.lastPage,
       );
 
   @override
-  List<Object?> get props => [status, message, largeCategories, products];
+  List<Object?> get props =>
+      [status, message, largeCategories, products, lastPage];
 }

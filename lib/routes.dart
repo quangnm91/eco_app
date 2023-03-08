@@ -5,9 +5,11 @@ import 'package:eco_app/presentation/scenes/cart_screen/cart_screen.dart';
 import 'package:eco_app/presentation/scenes/category_details/category_details_screen.dart';
 import 'package:eco_app/presentation/scenes/checkout/checkout_screen.dart';
 import 'package:eco_app/presentation/scenes/home/home_screen.dart';
+import 'package:eco_app/presentation/scenes/let_us_in/let_us_in_screen.dart';
 import 'package:eco_app/presentation/scenes/order_screen/order_screen.dart';
 import 'package:eco_app/presentation/scenes/product_details/product_details_screen.dart';
 import 'package:eco_app/presentation/scenes/search/search_screen.dart';
+import 'package:eco_app/presentation/scenes/settings/setting_screen.dart';
 import 'package:eco_app/presentation/scenes/sign_in/sign_in_screen.dart';
 import 'package:eco_app/presentation/scenes/sign_up/sign_up_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,8 @@ class Routes {
   static const checkout = '/checkout';
   static const search = '/search';
   static const order = '/order';
+  static const settings = '/settings';
+  static const letUsIn = 'let-us-in';
 }
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -31,7 +35,7 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
       category:
           ModalRoute.of(context)?.settings.arguments as LargeCategoryModel),
   Routes.productDetails: (BuildContext context) => ProductDetailsScreen(
-      product: ModalRoute.of(context)?.settings.arguments as ProductModel),
+      productId: ModalRoute.of(context)?.settings.arguments as int),
   Routes.home: (BuildContext context) => const HomeScreen(),
   Routes.signUp: (BuildContext context) => const SignUpScreen(),
   Routes.signIn: (BuildContext context) => const SignInScreen(),
@@ -40,4 +44,6 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
       cart: ModalRoute.of(context)?.settings.arguments as CartModel),
   Routes.search: (BuildContext context) => const SearchScreen(),
   Routes.order: (BuildContext context) => const OrderScreen(),
+  Routes.settings: (BuildContext context) => const SettingScreen(),
+  Routes.letUsIn: (BuildContext context) => const LetUsInScreen(),
 };

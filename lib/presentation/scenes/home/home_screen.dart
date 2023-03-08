@@ -18,12 +18,27 @@ import '../../widgets/product_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final bloc = HomeBloc(
         productUsecases: injector<ProductUsecases>(),
         categoryUsecases: injector<CategoryUsecases>())
       ..add(const InitialEvent());
+
+    final controller = ScrollController();
+    controller.addListener(() {
+      if (controller.offset >= controller.position.maxScrollExtent) {
+        bloc.add(const LoadMoreProductsEvent());
+      }
+      // print(controller.offset);
+      // if (controller.hasClients
+      //  ) {
+      //   // add event to get get new data
+      //   controller.
+      //   bloc.add(const LoadMoreProductsEvent());
+      // }
+    });
     return BlocBuilder<HomeBloc, HomeState>(
       bloc: bloc,
       builder: (_, state) {
@@ -32,9 +47,9 @@ class HomeScreen extends StatelessWidget {
         }
         if (state.status == HomeStatus.loading) {
           return const LoadingIndicator(
-              indicatorType: Indicator.semiCircleSpin,
-              colors: const [Colors.white],
-              strokeWidth: 2,
+              indicatorType: Indicator.ballScale,
+              colors: [Colors.blueAccent],
+              // strokeWidth: 2,
               backgroundColor: Colors.white,
               pathBackgroundColor: Colors.white);
         }
@@ -42,6 +57,7 @@ class HomeScreen extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.only(top: 28, left: 24, right: 24),
             child: ListView(
+              controller: controller,
               children: [
                 Row(
                   children: [
@@ -139,6 +155,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 GridView.builder(
+                  // controller: controller,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.6,
@@ -152,8 +169,9 @@ class HomeScreen extends StatelessWidget {
                     final product = state.products.elementAt(index);
                     return ProductCard(
                       product: product,
-                      onTap: () => Navigator.of(context)
-                          .pushNamed(Routes.productDetails, arguments: product),
+                      onTap: () => Navigator.of(context).pushNamed(
+                          Routes.productDetails,
+                          arguments: product.id),
                     );
                   },
                 ),

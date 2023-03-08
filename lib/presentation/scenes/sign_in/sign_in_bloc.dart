@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../data/local/authenticated_cache.dart';
-import '../../../domain/usecases/auth_usecase.dart';
+import '../../../domain/usecases/auth_usecases.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -30,8 +30,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   FutureOr<void> onClickSignInButtonEvent(
       ClickSignInButtonEvent event, Emitter<SignInState> emit) async {
+    // emit(state.copyWith(status: SignInStatus.loading));
     final result = await authUsecases.signIn(event.email, event.password);
-
+    // emit(state.copyWith(status: SignInStatus.done));
     result.fold(
         (failure) => emit(state.copyWith(
             status: SignInStatus.error,

@@ -7,7 +7,7 @@ import '../response/products_response.dart';
 
 abstract class ProductRepository {
   Future<ProductsResponse> getProducts(Map<String, dynamic>? queryParameters);
-  Future<ProductResponse> getProductById(String id);
+  Future<ProductResponse> getProductById(int id);
 }
 
 class ProductRepositoryImpl extends ProductRepository with BaseRepository {
@@ -29,7 +29,7 @@ class ProductRepositoryImpl extends ProductRepository with BaseRepository {
   }
 
   @override
-  Future<ProductResponse> getProductById(String id) async {
+  Future<ProductResponse> getProductById(int id) async {
     var header = await buildHeader();
     var request = RemoteInput(
         endPoint: '/products/$id',
