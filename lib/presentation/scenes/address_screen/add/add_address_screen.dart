@@ -15,10 +15,9 @@ class AddAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = ['An Giang', 'Hanoi', 'Quang Binh'];
     final nameController = TextEditingController();
     final phoneNumberController = TextEditingController();
-    final rxProvince = ReplaySubject<String>();
+    final rxProvince = ReplaySubject<int>();
     final addressController = TextEditingController();
     final bloc = AddAddressBloc(
       provinceUsecases: injector<ProvinceUsecases>(),
@@ -114,23 +113,23 @@ class AddAddressScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   const Text("Province"),
                   const SizedBox(height: 8),
-                  StreamBuilder(
+                  StreamBuilder<int>(
                       stream: rxProvince,
+                      initialData: 1,
                       builder: (context, snapshot) {
-                        return DropdownButton<String>(
-                          value: snapshot.data ??
-                              state.provinces.first.id.toString(),
+                        return DropdownButton<int>(
+                          value: snapshot.data ?? state.provinces.first.id,
                           icon: const Icon(Icons.arrow_drop_down),
                           elevation: 16,
                           isExpanded: true,
                           borderRadius: BorderRadius.circular(12),
-                          onChanged: (String? value) {
+                          onChanged: (int? value) {
                             rxProvince.sink.add(value!);
                           },
-                          items: state.provinces.map<DropdownMenuItem<String>>(
+                          items: state.provinces.map<DropdownMenuItem<int>>(
                               (ProvinceModel province) {
-                            return DropdownMenuItem<String>(
-                              value: province.id.toString(),
+                            return DropdownMenuItem<int>(
+                              value: province.id,
                               child: Text(province.name),
                             );
                           }).toList(),
@@ -180,6 +179,7 @@ class AddAddressScreen extends StatelessWidget {
                           address: addressController.text,
                           phoneNumber: phoneNumberController.text,
                           provinceId: rxProvince.values.last,
+                          province: null,
                         ),
                       ),
                     );

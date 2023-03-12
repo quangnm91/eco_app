@@ -3,6 +3,7 @@ import 'package:eco_app/domain/usecases/auth_usecases.dart';
 import 'package:eco_app/presentation/scenes/settings/setting_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../injector.dart';
 import '../../../routes.dart';
@@ -43,6 +44,13 @@ class SettingScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        if (state.status == SettingStatus.loading) {
+          return const LoadingIndicator(
+              indicatorType: Indicator.ballScale,
+              colors: [Colors.blueAccent],
+              backgroundColor: Colors.white,
+              pathBackgroundColor: Colors.white);
+        }
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -66,7 +74,7 @@ class SettingScreen extends StatelessWidget {
                   title: const Text('Address'),
                   trailing: const Icon(Icons.navigate_next),
                   onTap: () {
-                    Navigator.of(context).pushNamed(Routes.addAddress);
+                    Navigator.of(context).pushNamed(Routes.address);
                   },
                 ),
               ),
