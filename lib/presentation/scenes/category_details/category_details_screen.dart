@@ -46,11 +46,10 @@ class CategoryDetailsScreen extends StatelessWidget {
         }
         if (state.status == CategoryDetailsStatus.loading) {
           return const LoadingIndicator(
-              indicatorType: Indicator.circleStrokeSpin,
-              colors: const [Colors.white],
-              strokeWidth: 2,
-              backgroundColor: Colors.black,
-              pathBackgroundColor: Colors.black);
+              indicatorType: Indicator.ballScale,
+              colors: [Colors.blueAccent],
+              backgroundColor: Colors.white,
+              pathBackgroundColor: Colors.white);
         }
         return Scaffold(
           appBar: AppBar(

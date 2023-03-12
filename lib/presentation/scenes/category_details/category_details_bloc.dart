@@ -23,6 +23,8 @@ class CategoryDetailsBloc
 
   FutureOr<void> onLoadingEvent(
       LoadingEvent event, Emitter<CategoryDetailsState> emit) async {
+    emit(state.copyWith(status: CategoryDetailsStatus.loading));
+
     final products = await productUsecases.getProducts(
         queryParameters: {"large_category_id": event.largeCategoryId});
     products.fold(

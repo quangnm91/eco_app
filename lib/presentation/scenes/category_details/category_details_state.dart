@@ -6,10 +6,11 @@ class CategoryDetailsState extends Equatable {
   final CategoryDetailsStatus status;
   final String message;
   final List<ProductModel> products;
-  const CategoryDetailsState._(
-      {this.status = CategoryDetailsStatus.initial,
-      this.message = '',
-      this.products = const []});
+  const CategoryDetailsState._({
+    this.status = CategoryDetailsStatus.initial,
+    this.message = '',
+    this.products = const [],
+  });
 
   const CategoryDetailsState.initial() : this._();
   CategoryDetailsState copyWith({
@@ -23,5 +24,5 @@ class CategoryDetailsState extends Equatable {
           products: products ?? this.products);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [status, message, products];
 }

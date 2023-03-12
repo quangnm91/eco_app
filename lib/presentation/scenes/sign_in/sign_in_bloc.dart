@@ -30,7 +30,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   FutureOr<void> onClickSignInButtonEvent(
       ClickSignInButtonEvent event, Emitter<SignInState> emit) async {
-    // emit(state.copyWith(status: SignInStatus.loading));
+    emit(state.copyWith(status: SignInStatus.loading));
     final result = await authUsecases.signIn(event.email, event.password);
     // emit(state.copyWith(status: SignInStatus.done));
     result.fold(

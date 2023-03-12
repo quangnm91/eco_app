@@ -25,6 +25,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
 
   FutureOr<void> onLogoutEvent(
       LogoutEvent event, Emitter<SettingState> emit) async {
+    emit(state.copyWith(status: SettingStatus.loading));
     final result = await authUsecases.logout();
     result.fold(
         (failure) => emit(state.copyWith(
