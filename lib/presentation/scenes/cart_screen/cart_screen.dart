@@ -55,11 +55,11 @@ class CartScreen extends StatelessWidget {
         }
         if (state.status == CartStatus.loading) {
           return const LoadingIndicator(
-              indicatorType: Indicator.circleStrokeSpin,
-              colors: const [Colors.white],
-              strokeWidth: 2,
-              backgroundColor: Colors.black,
-              pathBackgroundColor: Colors.black);
+              indicatorType: Indicator.ballScale,
+              colors: [Colors.blueAccent],
+              // strokeWidth: 2,
+              backgroundColor: Colors.white,
+              pathBackgroundColor: Colors.white);
         }
         return Scaffold(
           backgroundColor: Colors.grey.shade100,

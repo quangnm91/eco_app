@@ -22,7 +22,6 @@ class CartRepositoryImpl extends CartRepository with BaseRepository {
   @override
   Future<CartResponse> add(int productId, int quantity) async {
     var header = await buildHeader(authCache: authenticatedCache);
-    print('header ---> ${header}');
     var request = RemoteInput(
         endPoint: '/cart',
         method: RemoteMethod.post,

@@ -44,7 +44,11 @@ class OrderScreen extends StatelessWidget {
               pathBackgroundColor: Colors.white);
         }
         return Scaffold(
-          appBar: AppBar(title: const Text('My Orders')),
+          appBar: AppBar(
+              leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.of(context).pop()),
+              title: const Text('My Orders')),
           body: state.orders.isEmpty
               ? const NoOrder()
               : ListView(

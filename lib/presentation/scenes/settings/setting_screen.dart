@@ -53,7 +53,7 @@ class SettingScreen extends StatelessWidget {
           ),
           body: ListView(
             children: [
-              Card(
+              const Card(
                 child: ListTile(
                   leading: Icon(Icons.person),
                   title: Text('Edit Profile'),
@@ -62,15 +62,18 @@ class SettingScreen extends StatelessWidget {
               ),
               Card(
                 child: ListTile(
-                  leading: Icon(Icons.place),
-                  title: Text('Address'),
-                  trailing: Icon(Icons.navigate_next),
+                  leading: const Icon(Icons.place),
+                  title: const Text('Address'),
+                  trailing: const Icon(Icons.navigate_next),
+                  onTap: () {
+                    Navigator.of(context).pushNamed(Routes.addAddress);
+                  },
                 ),
               ),
               Card(
                 child: ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('Logout'),
+                  leading: const Icon(Icons.logout),
+                  title: const Text('Logout'),
                   onTap: () {
                     bloc.add(const LogoutEvent());
                   },
